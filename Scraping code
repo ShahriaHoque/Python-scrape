@@ -1,0 +1,16 @@
+from bs4 import BeautifulSoup
+import requests
+
+url= "https://www.linkedin.com/in/shahria-hoque-1106b4206/"
+page = requests.get(url)
+
+soup = BeautifulSoup(page.content, 'html.parser')
+lists = soup.find_all('section', class_="artdeco-card ember")
+
+for list in lists:
+    experience = list.find('span', class_="visually-hidden")
+    education = list.find('span', class_="visually-hidden")
+    skills = list.find('span', class_="visually-hidden")
+    languages = list.find('span', class_="visually-hidden")
+    info = [experience, education, skills, languages]
+    print(info)
